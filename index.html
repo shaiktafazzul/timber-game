@@ -181,12 +181,14 @@
     position:absolute; z-index: 11; pointer-events:none; left:50%; top:38%;
     font-family: 'Palatino', 'Georgia', serif; font-style: italic; font-weight:bold;
     color: var(--coral); font-size: 26px; text-shadow: 0 2px 6px rgba(0,0,0,0.7);
-    animation: comboPop 0.6s ease forwards;
+    animation: comboPop 1.8s ease forwards;
   }
   @keyframes comboPop{
     0%{ transform: translate(-50%,-50%) scale(0.4) rotate(-6deg); opacity: 0; }
-    35%{ transform: translate(-50%,-50%) scale(1.2) rotate(2deg); opacity: 1; }
-    100%{ transform: translate(-50%,-70%) scale(1) rotate(0deg); opacity: 0; }
+    15%{ transform: translate(-50%,-50%) scale(1.2) rotate(2deg); opacity: 1; }
+    30%{ transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity: 1; }
+    80%{ transform: translate(-50%,-50%) scale(1) rotate(0deg); opacity: 1; }
+    100%{ transform: translate(-50%,-70%) scale(0.95) rotate(0deg); opacity: 0; }
   }
 
   #tray{ display:flex; justify-content: space-around; align-items:center; width: 100%; max-width: 420px; margin-top: 16px; min-height: 96px; gap: 6px; }
@@ -436,13 +438,13 @@
       osc.start(t0); osc.stop(t0+duration+0.02);
     }catch(err){}
   }
-  function sfxPlace(){ tone(220, 0.09, 'triangle', 0.12); }
+  function sfxPlace(){ tone(220, 0.10, 'triangle', 0.32); }
   function sfxClear(comboLevel){
     const base = 440 + Math.min(comboLevel,6)*60;
-    tone(base, 0.16, 'sine', 0.16); tone(base*1.5, 0.14, 'sine', 0.1, 0.05);
+    tone(base, 0.18, 'sine', 0.4); tone(base*1.5, 0.16, 'sine', 0.28, 0.05);
   }
-  function sfxGameOver(){ tone(300, 0.22, 'sawtooth', 0.1); tone(220, 0.28, 'sawtooth', 0.1, 0.12); tone(140, 0.35, 'sawtooth', 0.1, 0.24); }
-  function sfxWin(){ tone(523, 0.14, 'sine', 0.15); tone(659, 0.14, 'sine', 0.15, 0.1); tone(784, 0.22, 'sine', 0.15, 0.2); }
+  function sfxGameOver(){ tone(300, 0.22, 'sawtooth', 0.28); tone(220, 0.28, 'sawtooth', 0.28, 0.12); tone(140, 0.35, 'sawtooth', 0.28, 0.24); }
+  function sfxWin(){ tone(523, 0.14, 'sine', 0.36); tone(659, 0.14, 'sine', 0.36, 0.1); tone(784, 0.22, 'sine', 0.36, 0.2); }
   muteBtn.addEventListener('click', ()=>{
     soundOn = !soundOn;
     muteBtn.textContent = soundOn ? '🔊' : '🔇';
@@ -625,7 +627,7 @@
     el.className = 'combo-tag';
     el.textContent = text;
     boardEl.appendChild(el);
-    setTimeout(()=> el.remove(), 620);
+    setTimeout(()=> el.remove(), 1820);
   }
   function spawnParticles(r, c, color){
     const cellRect = cellEls[r][c].getBoundingClientRect();
